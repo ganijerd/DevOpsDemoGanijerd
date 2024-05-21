@@ -3,7 +3,7 @@ export class GuiModel {
 
     private _guiModel = {
         "application": {
-            "title": "DevOpsDemo FS2024",
+            "title": "DevOpsDemo Ganijerd FS2024",
             "formList": [
                 {
                     "id": "OwnUserForm",
@@ -58,7 +58,7 @@ export class GuiModel {
                     "url": "/todo",
                     "formFieldList": [
                         {
-                            "id":   "title",
+                            "id": "title",
                             "type": "text",
                             "name": { default: "Titel" },
                             "required": true,
@@ -87,6 +87,45 @@ export class GuiModel {
                         }
                     ]
                 },
+                {
+                    "id": "ModuleForm",
+                    "title": { default: "Neue Kachel" },
+                    "formFieldList": [
+                        {
+                            "id": "firstName",
+                            "type": "text",
+                            "name": { default: "Vorname" },
+                            "required": true,
+                        },
+                        {
+                            "id": "lastName",
+                            "type": "text",
+                            "name": { default: "Nachname" },
+                            "required": true,
+                        },
+                        {
+                            "id": "country",
+                            "type": "text",
+                            "name": { default: "Herkunftsland" },
+                            "newRow": true,
+                        },
+                        {
+                            "id": "age",
+                            "type": "text",
+                            "name": { default: "Alter" },
+                            "required": true,
+                        },
+                        {
+                            "type": "cancelButton",
+                            "name": {default : "Abbrechen"},
+                        },
+                        {
+                            "type": "okButton",
+                            "name": {default : "Erstellen"},
+                        },
+
+                    ]//___________________________________
+                },
             ],
             "pageList": [
                 {
@@ -107,6 +146,19 @@ export class GuiModel {
                             "width": 2,
                             "newRow": true,
                         },
+                        // Neuer Button erstellt "Person hinzufügen"
+                        //______________________________________________
+                        {
+                            "type": "newButton",
+                            "name": { default: "Neue Person hinzufügen" },
+                            "icon": "fa-plus",
+                            "color": "green",
+                            "width": 2,
+                            "form": {
+                                "form": "ModuleForm"
+                            }
+                        },
+                       
                     ]
                 },
                 {
@@ -117,12 +169,12 @@ export class GuiModel {
                         },
                         {
                             "type": "newButton",
-                            "name": { default: "Neues ToDo"},
+                            "name": { default: "Neues ToDo" },
                             "icon": "fa-user",
                             "color": "green",
                             "width": 2,
-                            "form" : {
-                                "form" : "ToDoForm"
+                            "form": {
+                                "form": "ToDoForm"
                             }
                         },
                         {
@@ -138,6 +190,26 @@ export class GuiModel {
                         }
                     ]
                 },
+                {
+                    "id": "ModulePage",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "list",
+                            "name": "Module",
+                            "icon": "fa-user",
+                            "color": "wet-asphalt",
+                            "search": true,
+                            "url": "/module",
+                            "form": {
+                                "form": "ModuleForm"
+                            }
+                        }
+                    ]
+                },
+
             ]
         }
     };
