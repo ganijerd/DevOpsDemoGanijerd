@@ -124,7 +124,7 @@ export class GuiModel {
                             "name": {default : "Erstellen"},
                         },
 
-                    ]//___________________________________
+                    ]
                 },
             ],
             "pageList": [
