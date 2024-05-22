@@ -12,4 +12,10 @@ public class PasswordValidatorTest {
         assertFalse(PasswordValidator.isValidLength("123"));
         assertTrue(PasswordValidator.isValidLength("1234567890123456"));
     }
+    @Test
+    void testContainsUpperCase() {
+        assertTrue(PasswordValidator.containsUpperCase("Abc"));
+        assertFalse(PasswordValidator.containsUpperCase("abc"));
+        assertFalse(PasswordValidator.containsUpperCase("1234567890"));
+    }
 }
