@@ -7,4 +7,7 @@ public class PasswordValidator {
     public static boolean containsUpperCase(String password) {
         return password.matches(".*[A-Z].*");
     }
+    public static boolean containsLowerCase(String password) {
+        return password.matches(".*[a-z].*");
+    }
 }
