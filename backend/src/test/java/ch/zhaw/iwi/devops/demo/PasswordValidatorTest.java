@@ -44,4 +44,8 @@ public class PasswordValidatorTest {
         assertFalse(PasswordValidator.isValidPassword("abc123"));
         assertFalse(PasswordValidator.isValidPassword("ABC@XYZ"));
     }
+    @Test
+    void testOnlyDigits() {
+        assertFalse(PasswordValidator.isValidPassword("12345678"));
+    }
 }
