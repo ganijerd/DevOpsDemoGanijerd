@@ -10,4 +10,7 @@ public class PasswordValidator {
     public static boolean containsLowerCase(String password) {
         return password.matches(".*[a-z].*");
     }
+    public static boolean containsDigit(String password) {
+        return password.matches(".*\\d.*");
+    }
 }
