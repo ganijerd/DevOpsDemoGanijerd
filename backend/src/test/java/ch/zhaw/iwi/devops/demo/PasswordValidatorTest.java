@@ -36,4 +36,12 @@ public class PasswordValidatorTest {
         assertFalse(PasswordValidator.containsSpecialChar("abc"));
         assertFalse(PasswordValidator.containsSpecialChar("1234567890"));
     }
+    @Test
+    void testIsValidPassword() {
+        assertTrue(PasswordValidator.isValidPassword("Abc123@xyz"));
+        assertFalse(PasswordValidator.isValidPassword("abc"));
+        assertFalse(PasswordValidator.isValidPassword("ABC123"));
+        assertFalse(PasswordValidator.isValidPassword("abc123"));
+        assertFalse(PasswordValidator.isValidPassword("ABC@XYZ"));
+    }
 }
