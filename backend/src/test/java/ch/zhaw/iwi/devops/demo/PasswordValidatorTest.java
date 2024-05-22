@@ -30,4 +30,10 @@ public class PasswordValidatorTest {
         assertFalse(PasswordValidator.containsDigit("abc"));
         assertFalse(PasswordValidator.containsDigit("ABCDEFGH"));
     }
+    @Test
+    void testContainsSpecialChar() {
+        assertTrue(PasswordValidator.containsSpecialChar("abc@"));
+        assertFalse(PasswordValidator.containsSpecialChar("abc"));
+        assertFalse(PasswordValidator.containsSpecialChar("1234567890"));
+    }
 }
