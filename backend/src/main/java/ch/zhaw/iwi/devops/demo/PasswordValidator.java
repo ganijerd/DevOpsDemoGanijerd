@@ -16,5 +16,9 @@ public class PasswordValidator {
     public static boolean containsSpecialChar(String password) {
         return password.matches(".*[!@#$%^&*()_+=\\-\\[\\]\\{\\};':\",.<>\\/?].*");
     }
-
+    public static boolean isValidPassword(String password) {
+        return isValidLength(password) && containsUpperCase(password) &&
+                containsLowerCase(password) && containsDigit(password) &&
+                containsSpecialChar(password);
+    }
 }
