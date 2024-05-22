@@ -13,4 +13,8 @@ public class PasswordValidator {
     public static boolean containsDigit(String password) {
         return password.matches(".*\\d.*");
     }
+    public static boolean containsSpecialChar(String password) {
+        return password.matches(".*[!@#$%^&*()_+=\\-\\[\\]\\{\\};':\",.<>\\/?].*");
+    }
+
 }
