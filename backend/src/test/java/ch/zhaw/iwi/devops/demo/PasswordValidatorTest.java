@@ -18,4 +18,10 @@ public class PasswordValidatorTest {
         assertFalse(PasswordValidator.containsUpperCase("abc"));
         assertFalse(PasswordValidator.containsUpperCase("1234567890"));
     }
+    @Test
+    void testContainsLowerCase() {
+        assertTrue(PasswordValidator.containsLowerCase("abc"));
+        assertFalse(PasswordValidator.containsLowerCase("ABC"));
+        assertFalse(PasswordValidator.containsLowerCase("1234567890"));
+    }
 }
