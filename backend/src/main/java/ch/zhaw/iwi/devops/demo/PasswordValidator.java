@@ -1,24 +1,30 @@
 package ch.zhaw.iwi.devops.demo;
 
 public class PasswordValidator {
-    public static boolean isValidLength(String password) {
-        return password.length() >= 8;
-    }
-    public static boolean containsUpperCase(String password) {
-        return password.matches(".*[A-Z].*");
-    }
-    public static boolean containsLowerCase(String password) {
-        return password.matches(".*[a-z].*");
-    }
-    public static boolean containsDigit(String password) {
-        return password.matches(".*\\d.*");
-    }
-    public static boolean containsSpecialChar(String password) {
-        return password.matches(".*[!@#$%^&*()_+=\\-\\[\\]\\{\\};':\",.<>\\/?].*");
-    }
+    private static final int MIN_LENGTH = 8;
+    private static final String UPPER_CASE = "[A-Z]";
+    private static final String LOWER_CASE = "[a-z]";
+    private static final String DIGIT = "\\d";
+    private static final String SPECIAL_CHAR = "[!@#$%^&*()_+=\\-\\[\\]\\{\\};':\",.<>\\/?]";
+
     public static boolean isValidPassword(String password) {
-        return isValidLength(password) && containsUpperCase(password) &&
-                containsLowerCase(password) && containsDigit(password) &&
-                containsSpecialChar(password);
+        if (password.length() < MIN_LENGTH) return false;
+        
+        boolean hasUpperCase = false;
+        boolean hasLowerCase = false;
+        boolean hasDigit = false;
+        boolean hasSpecialChar = false;
+
+        for (char c : password.toCharArray()) {
+            String ch = String.valueOf(c);
+            if (!hasUpperCase && ch.matches(UPPER_CASE)) hasUpperCase = true;
+            if (!hasLowerCase && ch.matches(LOWER_CASE)) hasLowerCase = true;
+            if (!hasDigit && ch.matches(DIGIT)) hasDigit = true;
+            if (!hasSpecialChar && ch.matches(SPECIAL_CHAR)) hasSpecialChar = true;
+
+            if (hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar) return true;
+        }
+        
+        return false;
     }
 }

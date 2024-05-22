@@ -1,63 +1,28 @@
 package ch.zhaw.iwi.devops.demo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class PasswordValidatorTest {
-    @Test
-    void testIsValidLength() {
-        assertTrue(PasswordValidator.isValidLength("12345678"));
-        assertFalse(PasswordValidator.isValidLength("123"));
-        assertTrue(PasswordValidator.isValidLength("1234567890123456"));
-    }
-    @Test
-    void testContainsUpperCase() {
-        assertTrue(PasswordValidator.containsUpperCase("Abc"));
-        assertFalse(PasswordValidator.containsUpperCase("abc"));
-        assertFalse(PasswordValidator.containsUpperCase("1234567890"));
-    }
-    @Test
-    void testContainsLowerCase() {
-        assertTrue(PasswordValidator.containsLowerCase("abc"));
-        assertFalse(PasswordValidator.containsLowerCase("ABC"));
-        assertFalse(PasswordValidator.containsLowerCase("1234567890"));
-    }
-    @Test
-    void testContainsDigit() {
-        assertTrue(PasswordValidator.containsDigit("abc123"));
-        assertFalse(PasswordValidator.containsDigit("abc"));
-        assertFalse(PasswordValidator.containsDigit("ABCDEFGH"));
-    }
-    @Test
-    void testContainsSpecialChar() {
-        assertTrue(PasswordValidator.containsSpecialChar("abc@"));
-        assertFalse(PasswordValidator.containsSpecialChar("abc"));
-        assertFalse(PasswordValidator.containsSpecialChar("1234567890"));
-    }
-    @Test
-    void testIsValidPassword() {
-        assertTrue(PasswordValidator.isValidPassword("Abc123@xyz"));
-        assertFalse(PasswordValidator.isValidPassword("abc"));
-        assertFalse(PasswordValidator.isValidPassword("ABC123"));
-        assertFalse(PasswordValidator.isValidPassword("abc123"));
-        assertFalse(PasswordValidator.isValidPassword("ABC@XYZ"));
-    }
-    @Test
-    void testOnlyDigits() {
-        assertFalse(PasswordValidator.isValidPassword("12345678"));
-    }
-    @Test
-    void testOnlyUppercase() {
-        assertFalse(PasswordValidator.isValidPassword("ABCDEFGH"));
-    }
-    @Test
-    void testOnlyLowercase() {
-        assertFalse(PasswordValidator.isValidPassword("abcdefgh"));
-    }
-    @Test
-    void testOnlySpecialChars() {
-        assertFalse(PasswordValidator.isValidPassword("@#$%^&*()"));
+    @ParameterizedTest
+    @CsvSource({
+        "Abc123@xyz, true",
+        "abc, false",
+        "ABC123, false",
+        "abc123, false",
+        "ABC@XYZ, false",
+        "12345678, false",
+        "ABCDEFGH, false",
+        "abcdefgh, false",
+        "@#$%^&*(), false",
+        "1234567890, false"
+    })
+    void testIsValidPassword(String password, boolean expected) {
+        assertEquals(expected, PasswordValidator.isValidPassword(password));
     }
 }
