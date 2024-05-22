@@ -48,4 +48,8 @@ public class PasswordValidatorTest {
     void testOnlyDigits() {
         assertFalse(PasswordValidator.isValidPassword("12345678"));
     }
+    @Test
+    void testOnlyUppercase() {
+        assertFalse(PasswordValidator.isValidPassword("ABCDEFGH"));
+    }
 }
