@@ -52,4 +52,8 @@ public class PasswordValidatorTest {
     void testOnlyUppercase() {
         assertFalse(PasswordValidator.isValidPassword("ABCDEFGH"));
     }
+    @Test
+    void testOnlyLowercase() {
+        assertFalse(PasswordValidator.isValidPassword("abcdefgh"));
+    }
 }
