@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger; 
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -20,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 public class PersonController {
-    private Map<Integer, Person> persons = new HashMap<Integer, Person>();
+    private Map<Integer, Person> persons = new HashMap<>();
+    private static final Logger logger = Logger.getLogger(PersonController.class.getName());
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
@@ -29,7 +31,7 @@ public class PersonController {
         this.persons.put(3,new Person(3, "Maximilian", "Weigl",24, "Schweiz"));
         this.persons.put(4,new Person(4, "Patrick", "Trachsler",35, "Schweiz"));
         this.persons.put(5,new Person(5, "Jonathan", "Mörgeli",12, "Schweiz"));
-        System.out.println("Init Data");
+        logger.info("Init Data");
     }
 
     @GetMapping("/persontest")
